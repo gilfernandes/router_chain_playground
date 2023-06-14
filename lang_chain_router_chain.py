@@ -132,6 +132,9 @@ def generate_router_chain(prompt_infos, destination_chains, default_chain):
 
 
 if __name__ == "__main__":
+    # Put here your API key or define it in your environment
+    # os.environ["OPENAI_API_KEY"] = '<key>'
+
     prompt_infos, destination_chains, default_chain = generate_destination_chains()
     chain = generate_router_chain(prompt_infos, destination_chains, default_chain)
     while True:
