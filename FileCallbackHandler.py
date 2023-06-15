@@ -186,8 +186,8 @@ class FileCallbackHandler(BaseCallbackHandler):
             """
         table += "</table>"
 
-        target_file = self.path.stem}.html" 
-        with open(f"{target_file, "w") as f:
+        target_file = f"{self.path.stem}.html" 
+        with open(target_file, "w") as f:
             f.write(f"""
 <html>
     <head>
