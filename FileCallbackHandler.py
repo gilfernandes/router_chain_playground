@@ -7,8 +7,8 @@ from langchain.schema import AgentAction, AgentFinish
 from langchain.schema import LLMResult
 
 from pathlib import Path
-
 from datetime import datetime
+import re
 
 
 class FileCallbackHandler(BaseCallbackHandler):
@@ -133,13 +133,7 @@ class FileCallbackHandler(BaseCallbackHandler):
         """Do nothing."""
         pass
 
-    def on_text(
-        self,
-        text: str,
-        color: Optional[str] = None,
-        end: str = "",
-        **kwargs: Any,
-    ) -> None:
+    def on_text(self,text: str, color: Optional[str] = None, end: str = "", **kwargs: Any ) -> None:
         """Run when agent ends."""
         self.file_handle.write(f"================ TEXT ===================\n")
         self.file_handle.write(f"{text}\n")
@@ -174,10 +168,10 @@ class FileCallbackHandler(BaseCallbackHandler):
             table += f"""
     <tr>
         <td>
-            {text}
+            {extract_agent(text)}
         </td>
         <td>
-            {"<br />".join(keys)}
+            {extract_input(text)}
         </td>
         <td>
             <pre>{"<br />".join(values)}</pre>
@@ -227,3 +221,9 @@ def generate_timestamp():
     timestamp = f"{weekday}, {day} {month} {year} {time}"
 
     return timestamp
+
+def extract_input(text):
+    return re.sub(r".+?'input':\s*'(.+)'}", r"\1", text)
+
+def extract_agent(text):
+    return re.sub(r"(.+?)\:.+", r"\1", text)
