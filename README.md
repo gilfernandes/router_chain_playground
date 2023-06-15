@@ -17,5 +17,5 @@ conda install -c https://conda.anaconda.org/conda-forge prompt_toolkit
 ## Execution
 
 ```bash
-python ./lang_chain_router_chain.p
+python ./lang_chain_router_chain.py
 ```
