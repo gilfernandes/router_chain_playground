@@ -68,12 +68,12 @@ class PromptFactory():
         },
         {
             'name': 'poet',
-            'description': 'Good for generating poems for creatinve questions',
+            'description': 'Good for generating poems for creative questions',
             'prompt_template': poet_template
         },
         {
             'name': 'wikipedia expert',
-            'description': 'Good for answering questions about general knwoledge',
+            'description': 'Good for answering questions about general knowledge',
             'prompt_template': wiki_template
         },
         {
